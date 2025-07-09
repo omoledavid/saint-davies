@@ -64,6 +64,7 @@ class AuthController extends Controller
 
             // Send verification email
             // Mail::to($user->email)->send(new EmailVerificationMail($user));
+            $user->markEmailAsVerified();
 
             // Commit transaction
             DB::commit();
