@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Filters\HotelFilter;
 use App\Http\Requests\HotelCreateRequest;
 use App\Http\Resources\HotelBookingResource;
 use App\Http\Resources\HotelResource;
@@ -207,5 +208,10 @@ class HotelController extends Controller
         $hotelIds = Hotel::where('manager_id', Auth::user()->id)->pluck('id');
         $bookings = HotelBooking::whereIn('hotel_id', $hotelIds)->latest()->get();
         return $this->ok('Hotel bookings fetched successfully', HotelBookingResource::collection($bookings));
+    }
+    public function allHotels(HotelFilter $filter)
+    {
+        $hotels = Hotel::with('files', 'manager')->where('is_active', true)->filter($filter)->get();
+        return $this->ok('Hotels fetched successfully', HotelResource::collection($hotels));
     }
 }

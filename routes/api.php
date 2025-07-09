@@ -156,8 +156,10 @@ Route::prefix('tenants')->group(function () {
     });
 });
 Route::prefix('general')->group(function () {
-    Route::get('/plans', [PlanController::class, 'index'])->name('plans.index');
-    Route::get('/properties', [PropertyController::class, 'allProperties'])->name('properties.general');
+    Route::get('/plans', [PlanController::class, 'index']);
+    Route::get('/properties', [PropertyController::class, 'allProperties']);
+    Route::get('/cars', [CarController::class, 'allCars']);
+    Route::get('/hotels', [HotelController::class, 'allHotels']);
 });
 
 //verify payment

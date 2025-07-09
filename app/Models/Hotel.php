@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use App\Http\Filters\QueryFilter;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Builder;
 
 class Hotel extends Model
 {
@@ -28,6 +30,10 @@ class Hotel extends Model
         'amenities' => 'array',
         'is_active' => 'boolean',
     ];
+    public function scopeFilter(Builder $builder, QueryFilter $filters)
+    {
+        return $filters->apply($builder);
+    }
 
     public function manager()
     {

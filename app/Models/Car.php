@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+use App\Http\Filters\QueryFilter;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 
 class Car extends Model
 {
@@ -22,6 +24,10 @@ class Car extends Model
         'description',
         'is_available',
     ];
+    public function scopeFilter(Builder $builder, QueryFilter $filters)
+    {
+        return $filters->apply($builder);
+    }
 
     public function manager()
     {

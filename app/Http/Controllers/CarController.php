@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Filters\CarFilter;
 use App\Http\Requests\CarCreationRequest;
 use App\Http\Resources\CarHireResource;
 use App\Http\Resources\CarResource;
@@ -194,5 +195,10 @@ class CarController extends Controller
         // Get all car hires for those cars
         $hires = CarHire::whereIn('car_id', $carIds)->latest()->get();
         return $this->ok('Car hires fetched successfully', CarHireResource::collection($hires));
+    }
+    public function allCars(CarFilter $filter)
+    {
+        $cars = Car::with('files', 'manager')->where('is_available', true)->filter($filter)->get();
+        return $this->ok('Cars fetched successfully', CarResource::collection($cars));
     }
 }
