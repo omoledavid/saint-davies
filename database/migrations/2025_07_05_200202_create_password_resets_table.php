@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('email')->index();
             $table->string('token');
             $table->timestamp('created_at');
-            $table->timestamp('expires_at');
+            $table->timestamp('expires_at')->nullable();
         });
     }
 
