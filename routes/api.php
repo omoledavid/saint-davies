@@ -36,8 +36,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/user', [AuthController::class, 'user']);
 
     //subscription
-    Route::post('/subscribe', [SubscriptionController::class, 'subscribe'])->name('subscribe');
-    Route::get('/subscription', [SubscriptionController::class, 'current'])->name('subscription.current');
+    Route::post('/subscribe', [SubscriptionController::class, 'subscribe']);
+    Route::get('/subscription', [SubscriptionController::class, 'current']);
 
     //users
     Route::prefix('users')->group(function () {
@@ -75,11 +75,11 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::prefix('manager')->group(function () {
 
         //tenant
-        Route::get('/tenants', [TenantController::class, 'index'])->name('tenants.index');
-        Route::post('/tenants', [TenantController::class, 'store'])->name('tenants.store');
-        Route::get('/tenants/{id}', [TenantController::class, 'show'])->name('tenants.show');
-        Route::put('/tenants/{id}', [TenantController::class, 'update'])->name('tenants.update');
-        Route::delete('/tenants/{id}', [TenantController::class, 'destroy'])->name('tenants.destroy');
+        Route::get('/tenants', [TenantController::class, 'index']);
+        Route::post('/tenants', [TenantController::class, 'store']);
+        Route::get('/tenants/{id}', [TenantController::class, 'show']);
+        Route::put('/tenants/{id}', [TenantController::class, 'update']);
+        Route::delete('/tenants/{id}', [TenantController::class, 'destroy']);
 
         //maintenance requests
         Route::get('/maintenance-requests', [MaintenanceRequestController::class, 'index']);
@@ -88,7 +88,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
         //property
         Route::get('/properties', [PropertyController::class, 'index']);
         Route::post('/properties', [PropertyController::class, 'store']);
-        Route::get('/properties/{id}', [PropertyController::class, 'show'])->name('properties.show');
+        Route::get('/properties/{id}', [PropertyController::class, 'show']);
         Route::put('/properties/{id}', [PropertyController::class, 'update']);
         Route::delete('/properties/{id}', [PropertyController::class, 'destroy']);
         Route::get('/properties/{id}/reviews', [PropertyController::class, 'getReviews']);
@@ -102,10 +102,10 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::post('/properties/{id}/images/reorder', [PropertyController::class, 'reorderImages']);
 
         //property unit
-        Route::get('/property-units', [PropertyUnitController::class, 'index'])->name('property-units.index');
-        Route::post('/property-units', [PropertyUnitController::class, 'store'])->name('property-units.store');
-        Route::put('/property-units/{id}', [PropertyUnitController::class, 'update'])->name('property-units.update');
-        Route::delete('/property-units/{id}', [PropertyUnitController::class, 'destroy'])->name('property-units.destroy');
+        Route::get('/property-units', [PropertyUnitController::class, 'index']);
+        Route::post('/property-units', [PropertyUnitController::class, 'store']);
+        Route::put('/property-units/{id}', [PropertyUnitController::class, 'update']);
+        Route::delete('/property-units/{id}', [PropertyUnitController::class, 'destroy']);
 
         //property unit images
         Route::post('/property-units/{id}/images', [PropertyUnitController::class, 'uploadImages']);
@@ -151,8 +151,8 @@ Route::prefix('tenants')->group(function () {
     });
     Route::middleware(['auth:sanctum'])->group(function () {
         Route::get('/logout', [TenantAuthController::class, 'logout']);
-        Route::get('/dashboard', [TenantUserController::class, 'dashboard'])->name('dashboard');
-        Route::post('/request-maintenance', [TenantUserController::class, 'requestMaintenance'])->name('request-maintenance');
+        Route::get('/dashboard', [TenantUserController::class, 'dashboard']);
+        Route::post('/request-maintenance', [TenantUserController::class, 'requestMaintenance']);
     });
 });
 Route::prefix('general')->group(function () {
